@@ -29,6 +29,9 @@
 
     {% render 'meta-tags' %}
 
+    
+
+
     <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
     {{ content_for_header }}
 
@@ -188,8 +191,12 @@
         }
       }
     {% endstyle %}
+    
+    {{ 'bootstrap-grid.min.css' | asset_url | stylesheet_tag }}
+    {{ 'fonts.css' | asset_url | stylesheet_tag }}
+    {{ 'base.css' | asset_url | stylesheet_tag }}    
 
-    {{ 'base.css' | asset_url | stylesheet_tag }}
+    {% comment %} add boostrap here {% endcomment %}
 
     {%- unless settings.type_body_font.system? -%}
       <link rel="preload" as="font" href="{{ settings.type_body_font | font_url }}" type="font/woff2" crossorigin>
@@ -257,5 +264,11 @@
     {%- if settings.predictive_search_enabled -%}
       <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script src="{{'main.js' | asset_url |}}"></script>
+    
+    
   </body>
 </html>

@@ -2,13 +2,103 @@
   display: flex;
   position: relative;
   flex-direction: column;
+  letter-spacing: normal;
+  color:white;
 }
 
-.banner__box {
-  text-align: center;
+.banner .banner__media IMG{
+  max-width:100%;
 }
+
+.banner__buttons{
+  display: block !important;
+  padding-top:7px;
+}
+
+.banner__box h1{
+  font-weight: 700;
+  font-size: 42px;
+  line-height: 46.2px;
+  margin-top: 0px;
+  margin-bottom: 30px;
+}
+.banner__text{
+  max-width: 459px;
+  font-size: 18px;
+  line-height: 23.4px;
+  font-weight: 400;
+  margin-top: 0px;
+  margin-bottom: 30px;
+}
+
+.banner__content {
+  padding-left:5px !important;
+  padding-right:2px !important;
+  margin-top: -6px;
+  max-width: 1366px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+
+_:-ms-fullscreen, :root .banner__content{
+  margin-top:7%;
+  
+}
+
+@media only screen and (min-width: 1367px){
+  _:-ms-fullscreen, :root .banner--medium:not(.banner--adapt){
+    min-height: 50rem !important;
+  }
+  .banner--medium:not(.banner--adapt){
+    min-height: 72rem !important;
+  }
+
+  
+}
+
+@media only screen and (max-width: 749px){
+  _:-ms-fullscreen, :root .banner__content{
+    margin-top:0% !important;
+  }
+}
+
+@media only screen and (max-width: 1366px){
+  _:-ms-fullscreen, :root .banner__content{
+    margin-top:0% !important;
+  }
+
+  _:-ms-fullscreen, :root .banner{
+    overflow: hidden;
+    min-height: 32rem !important;
+  }
+
+  _:-ms-fullscreen, :root .banner__media IMG{
+    height:100% !important;
+    width: auto !important;
+    max-width:210% !important;
+  }
+
+}
+
+_:-ms-fullscreen, :root :not(.banner--adapt).banner--medium{
+  min-height: 48rem;
+}
+_:-ms-fullscreen, :root .banner__heading{
+  max-width:587px;
+}
+
+_:-ms-fullscreen, :root .banner__media IMG{
+  
+  
+}
+
 
 @media only screen and (max-width: 749px) {
+  .banner__text, .banner__box h1{
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
+    margin:auto;
+  }
   .banner--content-align-mobile-right .banner__box {
     text-align: right;
   }
@@ -73,7 +163,7 @@
   }
 
   .banner--medium:not(.banner--adapt) {
-    min-height: 56rem;
+    min-height: 58rem;
   }
 
   .banner--large:not(.banner--adapt) {

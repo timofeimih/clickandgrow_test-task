@@ -1,0 +1,87 @@
+<link rel="stylesheet" href="{{ 'template-collection__index.css' | asset_url }}" media="print" onload="this.media='all'">
+
+
+{%- liquid
+  assign products_to_display = section.settings.collection.all_products_count
+
+  if section.settings.collection.all_products_count > section.settings.products_to_show
+    assign products_to_display = section.settings.products_to_show
+    assign more_in_collection = true
+  endif
+-%}
+
+
+<div id="items-{{section.settings.size}}" class="container items-collection tk-futura-pt">
+  <h2>{{ section.settings.title | escape }}</h2>
+  <div class="row justify-content-center items-{{section.settings.size}}__container">
+    {%- for product in section.settings.collection.products limit:
+    section.settings.products_to_show -%} {% render 'card-product__index',
+    card_product: product, media_aspect_ratio: section.settings.image_ratio,
+    show_secondary_image: section.settings.show_secondary_image, show_vendor:
+    section.settings.show_vendor, show_rating: section.settings.show_rating, size: section.settings.size %}
+    {%- endfor -%}
+  </div>
+</div>
+
+<hr class="delimetr" />
+
+{% schema %}
+{
+  "name": "t:sections.featured-collection__index.name",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "default": "Featured collection",
+      "label": "t:sections.featured-collection__index.settings.title.label"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "t:sections.featured-collection__index.settings.collection.label"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 2,
+      "max": 12,
+      "step": 2,
+      "default": 4,
+      "label": "t:sections.featured-collection__index.settings.products_to_show.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_secondary_image",
+      "default": false,
+      "label": "t:sections.featured-collection.settings.show_secondary_image.label"
+    },
+    {
+      "type": "select",
+      "id": "size",
+      "options": [
+        {
+          "value": "small",
+          "label": "t:sections.featured-collection__index.settings.size.options__1.label"
+        },
+        {
+          "value": "big",
+          "label": "t:sections.featured-collection__index.settings.size.options__2.label"
+        }
+      ],
+      "default": "small",
+      "label": "t:sections.featured-collection__index.settings.size.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.featured-collection__index.settings.header.content"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.featured-collection__index.presets.name"
+    }
+  ]
+}
+{% endschema %}

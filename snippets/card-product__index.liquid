@@ -1,0 +1,130 @@
+{% comment %}
+    Renders a product card
+
+    Accepts:
+    - card_product: {Object} Product Liquid object (optional)
+    - media_aspect_ratio: {String} Size of the product image card. Values are "square" and "portrait". Default is "square" (optional)
+    - show_secondary_image: {Boolean} Show the secondary image on hover. Default: false (optional)
+    - show_vendor: {Boolean} Show the product vendor. Default: false
+    - show_rating: {Boolean} Show the product rating. Default: false
+    - extend_height: {Boolean} Card height extends to available container space. Default: true (optional)
+    - lazy_load: {Boolean} Image should be lazy loaded. Default: true (optional)
+
+    Usage:
+    {% render 'card-product', show_vendor: section.settings.show_vendor %}
+{% endcomment %}
+
+{%- if card_product and card_product != empty -%}
+  {%- liquid
+    assign ratio = 1
+    if card_product.featured_media and media_aspect_ratio == 'portrait'
+      assign ratio = 0.8
+    elsif card_product.featured_media and media_aspect_ratio == 'adapt'
+      assign ratio = card_product.featured_media.aspect_ratio
+    endif
+    if ratio == 0 or ratio == nil
+      assign ratio = 1
+    endif
+  -%}
+  <div class="card-wrapper items-{{size}}__item {% if size and size=='small' %} col-6 col-lg-2 col-md-3 col-sm-4 {%else%} col-3{% endif%}">
+    <div class="items-{{size}}__image {% if show_secondary_image %}media media--transparent media--hover-effect {%endif%}">
+      <img
+      srcset="{%- if card_product.featured_media.width >= 165 -%}{{ card_product.featured_media | img_url: '165x' }} 165w,{%- endif -%}
+        {%- if card_product.featured_media.width >= 360 -%}{{ card_product.featured_media | img_url: '360x' }} 360w,{%- endif -%}
+        {%- if card_product.featured_media.width >= 533 -%}{{ card_product.featured_media | img_url: '533x' }} 533w,{%- endif -%}
+        {%- if card_product.featured_media.width >= 720 -%}{{ card_product.featured_media | img_url: '720x' }} 720w,{%- endif -%}
+        {%- if card_product.featured_media.width >= 940 -%}{{ card_product.featured_media | img_url: '940x' }} 940w,{%- endif -%}
+        {%- if card_product.featured_media.width >= 1066 -%}{{ card_product.featured_media | img_url: '1066x' }} 1066w,{%- endif -%}
+        {{ card_product.featured_media | img_url: 'master' }} {{ card_product.featured_media.width }}w"
+      src="{{ card_product.featured_media | img_url: '533x' }}"
+      sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
+      alt="{{ card_product.featured_media.alt | escape }}"
+      class="motion-reduce"
+      {% unless lazy_load == false %}loading="lazy"{% endunless %}
+      width="{{ card_product.featured_media.width }}"
+      height="{{ card_product.featured_media.height }}"
+    >
+    
+    {%- if card_product.media[1] != nil and show_secondary_image -%}
+      <img
+        srcset="{%- if card_product.media[1].width >= 165 -%}{{ card_product.media[1] | img_url: '165x' }} 165w,{%- endif -%}
+          {%- if card_product.media[1].width >= 360 -%}{{ card_product.media[1] | img_url: '360x' }} 360w,{%- endif -%}
+          {%- if card_product.media[1].width >= 533 -%}{{ card_product.media[1] | img_url: '533x' }} 533w,{%- endif -%}
+          {%- if card_product.media[1].width >= 720 -%}{{ card_product.media[1] | img_url: '720x' }} 720w,{%- endif -%}
+          {%- if card_product.media[1].width >= 940 -%}{{ card_product.media[1] | img_url: '940x' }} 940w,{%- endif -%}
+          {%- if card_product.media[1].width >= 1066 -%}{{ card_product.media[1] | img_url: '1066x' }} 1066w,{%- endif -%}
+          {{ card_product.media[1] | img_url: 'master' }} {{ card_product.media[1].width }}w"
+        src="{{ card_product.media[1] | img_url: '533x' }}"
+        sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
+        alt="{{ card_product.media[1].alt | escape }}"
+        class="motion-reduce"
+        loading="lazy"
+        width="{{ card_product.media[1].width }}"
+        height="{{ card_product.media[1].height }}"
+      >
+    {%- endif -%}
+
+    {% if card_product.variants %}
+      {% for variant in card_product.variants  %}
+          <img style='display:none' src="{{ variant.featured_image.src | img_url: '370x' }}" data-id="{{ variant.id }}" loading="lazy"/>
+      {% endfor %}
+    {% endif %}
+    </div>
+    <h3>
+      <a href="{{ card_product.url | default: '#' }}" class="full-unstyled-link">
+        {{ card_product.title | escape }}
+      </a>
+    </h3>
+    {% if size and size == 'small' %}
+    <form method="post" action="/cart/add">
+        <div class="items-{{size}}__order">
+            
+            
+                <div class="select-wrapper">
+                    <select name="id" aria-label="Select variant">
+                        {% for variant in card_product.variants  %}
+                            <option data-price="{{variant.price | money_without_currency}}" value="{{ variant.id }}">{{ variant.title }}</option>
+                        {% endfor %}
+                    </select>
+                    <input min="1" type="hidden" id="quantity" name="quantity" value="1"/>
+                </div>
+                <button type='submit' class="items-{{size}}__order-button">+</button>
+        </div>
+    </form>
+
+        <div class="items-{{size}}__footer">
+            <div class="items-{{size}}__price">
+                <span class="price-holder">{{card_product.price | money_without_currency}}</span> €
+            </div>
+
+            <a href="{{ card_product.url | default: '#' }}">See product ›</a>
+        </div>
+    {% else %}
+      <p>
+        {{ card_product.description | strip_html | slice: 8, 100 | truncatewords: 9 }}
+      </p>
+      <form action="{{ card_product.url | default: '#' }}">
+      <div class="select-wrapper">
+          <select class="item-{{size}}__select" name="variant" aria-label="Select variant">
+          
+          {% for variant in card_product.variants  %}
+              <option data-price="{{variant.price | money_without_currency}}" value="{{ variant.id }}">{{ variant.title }}</option>
+          {% endfor %}
+          </select>
+        </div>
+  
+        <div class="items-{{size}}__footer">
+          <div class="items-{{size}}__price-holder">
+            <div class="items-{{size}}__price">Starting from</div>
+
+            €<span class="price-holder">{{card_product.price | money_without_currency}}</span>
+          </div>
+  
+          <button class="rounded-button" type="submit">See product ›</button>
+        </div>
+      </form>
+    {% endif %}
+    
+  </div>
+  
+{%- endif -%}

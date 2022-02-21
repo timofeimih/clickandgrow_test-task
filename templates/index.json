@@ -6,20 +6,27 @@
         "heading": {
           "type": "heading",
           "settings": {
+            "heading": "Invest in your health with an indoor garden",
             "heading_size": "large"
           }
         },
         "text": {
           "type": "text",
-          "settings": {}
+          "settings": {
+            "text": "This smart indoor garden will provide you with a year-round supply of fresh, vitamin-packed herbs, fruits and vegetables that will help you boost your health with zero effort.",
+            "text_style": "body"
+          }
         },
         "button": {
           "type": "buttons",
           "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify:\/\/collections\/all",
-            "button_style_secondary_1": true,
-            "button_label_2": ""
+            "button_label_1": "Buy now ›",
+            "button_link_1": "#items-big",
+            "button_style_secondary_1": false,
+            "button_additional_classes_1": "scroll-to-collection",
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
           }
         }
       },
@@ -29,111 +36,41 @@
         "button"
       ],
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "desktop_content_position": "bottom-center",
+        "image": "shopify:\/\/shop_images\/Bg.png",
+        "image_overlay_opacity": 0,
+        "image_height": "medium",
+        "adapt_height_first_image": false,
+        "desktop_content_position": "middle-left",
         "show_text_box": false,
+        "desktop_content_alignment": "left",
+        "color_scheme": "background-1",
+        "mobile_content_alignment": "center",
         "stack_images_on_mobile": false,
         "show_text_below": false
       }
     },
-    "rich_text": {
-      "type": "rich-text",
-      "blocks": {
-        "heading": {
-          "type": "heading",
-          "settings": {}
-        },
-        "text": {
-          "type": "text",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "heading",
-        "text"
-      ],
-      "settings": {
-        "padding_top": 40,
-        "padding_bottom": 0
-      }
-    },
     "featured_collection": {
-      "type": "featured-collection",
+      "type": "featured-collection__index",
       "settings": {
-        "title": "Featured products",
-        "collection": "all",
-        "products_to_show": 8,
-        "show_view_all": false,
-        "show_secondary_image": true,
-        "padding_top": 28
+        "title": "Smart Gardens",
+        "collection": "smart-gardens",
+        "products_to_show": 2,
+        "size": "big",
+        "show_secondary_image": true
       }
     },
-    "collage": {
-      "type": "collage",
-      "blocks": {
-        "collection-0": {
-          "type": "collection",
-          "settings": {}
-        },
-        "product": {
-          "type": "product",
-          "settings": {}
-        },
-        "collection-1": {
-          "type": "collection",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "collection-0",
-        "product",
-        "collection-1"
-      ],
-      "settings": {}
-    },
-    "video": {
-      "type": "video",
+    "featured_collection-2": {
+      "type": "featured-collection__index",
       "settings": {
-        "heading": ""
-      }
-    },
-    "multicolumn": {
-      "type": "multicolumn",
-      "blocks": {
-        "column1": {
-          "type": "column",
-          "settings": {}
-        },
-        "column2": {
-          "type": "column",
-          "settings": {}
-        },
-        "column3": {
-          "type": "column",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "column1",
-        "column2",
-        "column3"
-      ],
-      "settings": {
-        "title": "",
-        "image_width": "third",
-        "column_alignment": "center",
-        "background_style": "none",
-        "button_label": ""
+        "title": "Plant pods",
+        "collection": "plant-pods",
+        "products_to_show": 12
       }
     }
   },
   "order": [
     "image_banner",
-    "rich_text",
     "featured_collection",
-    "collage",
-    "video",
-    "multicolumn"
+    "featured_collection-2"
   ]
 }

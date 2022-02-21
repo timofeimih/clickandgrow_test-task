@@ -29,6 +29,7 @@
         "image_padding": {
           "label": "Image padding"
         },
+        
         "text_alignment": {
           "options__1": {
             "label": "Left"
@@ -572,6 +573,35 @@
         "name": "Blog posts"
       }
     },
+    "featured-collection__index": {
+      "name": "Featured collection index",
+      "settings": {
+        "title": {
+          "label": "Heading"
+        },
+        "size": {
+          "label": "Size",
+          "options__1": {
+            "label": "Small"
+          },
+          "options__2": {
+            "label": "Big"
+          }
+        },
+        "collection": {
+          "label": "Collection"
+        },
+        "products_to_show": {
+          "label": "Maximum products to show"
+        },
+        "header": {
+          "content": "Product card index"
+        }
+      },
+      "presets": {
+        "name": "Featured collection index"
+      }
+    },
     "featured-collection": {
       "name": "Featured collection",
       "settings": {
@@ -1045,6 +1075,9 @@
             },
             "button_style_secondary_1": {
               "label": "Use outline button style"
+            },
+            "button_additional_classes_1": {
+              "label": "First button additional classes"
             },
             "button_label_2": {
               "label": "Second button label",
