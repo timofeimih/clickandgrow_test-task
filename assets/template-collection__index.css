@@ -240,8 +240,8 @@
 }
 
 .items-small__image IMG {
-  height: 100%;
-  width: auto;
+  height: auto;
+  width: 100%;
   margin: auto;
   transition: all 0.2s ease-in-out;
 }
