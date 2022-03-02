@@ -41,6 +41,8 @@
       assign body_font_bold_italic = body_font_bold | font_modify: 'style', 'italic'
     %}
 
+    {{ 'fonts.css' | asset_url | stylesheet_tag }}
+
     {% style %}
       {{ settings.type_body_font | font_face: font_display: 'swap' }}
       {{ body_font_bold | font_face: font_display: 'swap' }}
@@ -180,7 +182,7 @@
         font-size: 1.5rem;
         letter-spacing: 0.06rem;
         line-height: calc(1 + 0.8 / var(--font-body-scale));
-        font-family: var(--font-body-family);
+        font-family: 'futura-pt';
         font-style: var(--font-body-style);
         font-weight: var(--font-body-weight);
       }
@@ -193,7 +195,6 @@
     {% endstyle %}
     
     {{ 'bootstrap-grid.min.css' | asset_url | stylesheet_tag }}
-    {{ 'fonts.css' | asset_url | stylesheet_tag }}
     {{ 'base.css' | asset_url | stylesheet_tag }}    
 
     {% comment %} add boostrap here {% endcomment %}
