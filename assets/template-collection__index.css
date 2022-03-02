@@ -28,6 +28,7 @@
   gap: 20px;
   max-width: 1200px;
   margin: auto;
+  padding-left:0px;
 }
 
 .items-big__item {
@@ -166,12 +167,14 @@
   margin: auto;
   row-gap: 20px;
   padding-right: 20px;
+  list-style: none;
 }
 
 @media screen and (max-width: 768px) {
   .items-small__container {
     row-gap: 1rem;
     padding-right: 0px;
+    padding-left: 0px;
   }
 
   #items-small,
@@ -204,6 +207,7 @@
   line-height: 23px;
   font-weight: 500;
   font-family: 'futura-pt', sans-serif;
+  word-break: initial;
 }
 
 .items-small__item {

@@ -13,14 +13,14 @@
 
 <div id="items-{{section.settings.size}}" class="container items-collection tk-futura-pt">
   <h2>{{ section.settings.title | escape }}</h2>
-  <div class="row justify-content-center items-{{section.settings.size}}__container">
+  <ul class="row justify-content-center items-{{section.settings.size}}__container">
     {%- for product in section.settings.collection.products limit:
     section.settings.products_to_show -%} {% render 'card-product__index',
     card_product: product, media_aspect_ratio: section.settings.image_ratio,
     show_secondary_image: section.settings.show_secondary_image, show_vendor:
     section.settings.show_vendor, show_rating: section.settings.show_rating, size: section.settings.size %}
     {%- endfor -%}
-  </div>
+    </ul>
 </div>
 
 <hr class="delimetr" />

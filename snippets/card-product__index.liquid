@@ -22,7 +22,7 @@
       assign ratio = 1
     endif
   -%}
-  <div class="card-wrapper items-{{size}}__item {% if size and size=='small' %} col-6 col-lg-2 col-md-3 col-sm-4 {%else%} col-3{% endif%}">
+  <li class="card-wrapper items-{{size}}__item {% if size and size=='small' %} col-6 col-lg-2 col-md-3 col-sm-4 {%else%} col-3{% endif%}">
     <div class="items-{{size}}__image {% if show_secondary_image %}media media--transparent media--hover-effect {%endif%}">
       <img
       srcset="{%- if card_product.featured_media.width >= 165 -%}{{ card_product.featured_media | img_url: '165x' }} 165w,{%- endif -%}
@@ -121,6 +121,6 @@
       </form>
     {% endif %}
     
-  </div>
+    </li>
   
 {%- endif -%}
